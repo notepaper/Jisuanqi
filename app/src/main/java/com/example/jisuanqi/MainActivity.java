@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     SoundPool sp;//声明SoundPool的引用
     HashMap<String, Integer> hm;//声明HashMap来存放声音文件
     int currStaeamId;//当前正播放的streamId
+  //更新----------------------------------
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
