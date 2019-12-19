@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FF4040</color>
+    <color name="colorPrimaryDark">#DAD8D8</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="baise">#FFFFFF</color>
+    <color name="heise">#080808</color>
+    <color name="huise">#DAD8D8</color>
+    <color name="chengse">#EB7C45</color>
+</resources>
