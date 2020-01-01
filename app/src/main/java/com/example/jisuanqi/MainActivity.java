@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     HashMap<String, Integer> hm;//声明HashMap来存放声音文件
     int currStaeamId;//当前正播放的streamId
     String  data ;
-  //更新----------------------------------
+  //更新
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -166,63 +166,63 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     text2.setText(text.getText().toString()+"的");
                     text.setText("");
                     de.setEnabled(false);
-                    playSound("1", 0);//播放音效
+                    playSound("1", 0);
                     break;
                 case R.id.sc:
                     text.setText("");
                     text2.setText("");
-                    playSound("1", 0);//播放音效
+                    playSound("1", 0);
                     break;
                 case R.id.baba:
                     text.setText("爸爸");
                     de.setEnabled(true);
-                    playSound("1", 0);//播放音效
+                    playSound("1", 0);
                     break;
                 case R.id.mama:
                     text.setText("妈妈");
                     de.setEnabled(true);
-                    playSound("1", 0);//播放音效
+                    playSound("1", 0);
                     break;
 
                 case R.id.xiong:
                     text.setText("哥哥");
                     de.setEnabled(true);
-                    playSound("1", 0);//播放音效
+                    playSound("1", 0);
                     break;
                 case R.id.di:
                     text.setText("弟弟");
                     de.setEnabled(true);
-                    playSound("1", 0);//播放音效
+                    playSound("1", 0);
                     break;
                 case R.id.jie:
                     text.setText("姐姐");
                     de.setEnabled(true);
-                    playSound("1", 0);//播放音效
+                    playSound("1", 0);
                     break;
                 case R.id.mei:
                     text.setText("妹妹");
                     de.setEnabled(true);
-                    playSound("1", 0);//播放音效
+                    playSound("1", 0);
                     break;
                 case R.id.fu:
                     text.setText("丈夫");
                     de.setEnabled(true);
-                    playSound("1", 0);//播放音效
+                    playSound("1", 0);
                     break;
                 case R.id.qi:
                     text.setText("妻子");
                     de.setEnabled(true);
-                    playSound("1", 0);//播放音效
+                    playSound("1", 0);
                     break;
                 case R.id.zi:
                     text.setText("儿子");
                     de.setEnabled(true);
-                    playSound("1", 0);//播放音效
+                    playSound("1", 0);
                     break;
                 case R.id.nv:
                     text.setText("女儿");
                     de.setEnabled(true);
-                    playSound("1", 0);//播放音效
+                    playSound("1", 0);
                     break;
                 case R.id.dengyu:
                     //整合输入的信息
