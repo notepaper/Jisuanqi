@@ -17,11 +17,14 @@ import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
   private Spinner spinner1;
+  private HashMap<String,String> cx ;
   private TextView text,text2;
   private Button  baba ,mama,xiong,jie,mei,di,fu,qi,zi,nv,de,dengyu,sc;
     SoundPool sp;//声明SoundPool的引用
     HashMap<String, Integer> hm;//声明HashMap来存放声音文件
     int currStaeamId;//当前正播放的streamId
+    String  data ;
+  //更新----------------------------------
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +60,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         de.setOnClickListener(this);
         dengyu.setOnClickListener(this);
         ArrayList list  = new ArrayList<String>();
+        cx = new HashMap<String, String>();
+        cx.put("爸爸的妈妈","奶奶");
+        cx.put("爸爸的爸爸","爷爷");
+        cx.put("爸爸的老婆","妈妈");
+        cx.put("爸爸的哥哥","伯父");
+        cx.put("爸爸的弟弟","叔叔");
+        cx.put("爸爸的姐姐","姑姑");
+        cx.put("爸爸的妹妹","姑姑");
+        cx.put("妈妈的爸爸","外公");
+        cx.put("妈妈的妈妈","外婆");
+        cx.put("妈妈的哥哥","舅舅");
+        cx.put("妈妈的弟弟","舅舅");
+        cx.put("妈妈的姐姐","大姨");
+        cx.put("妈妈的妹妹","小姨");
+        cx.put("哥哥的妻子","嫂子");
+        cx.put("弟弟的妻子","弟媳");
+        cx.put("老婆的哥哥","大舅子");
         list.add("我是男的");
         list.add("我是女的");
         //下拉列表适配器 this,android.R.layout.simple_spinner_item,list
@@ -73,14 +93,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 // 将所选Spinner 的值带入TextView 中
                // text.setText("欢迎选择" + spinner1.getSelectedItem());//文本说明
                 if (spinner1.getSelectedItem().equals("我是男的")){
-                   text.setText("");
+                    fu.setEnabled(false);
+                    qi.setEnabled(true);
                 }  else {
-                        text.setText("功能正在开发中");
+                    fu.setEnabled(true);
+                    qi.setEnabled(false);
                    } ;
             }
             public void onNothingSelected(AdapterView<?> arg0) {
                 // TODO Auto-generated method stub
-                text.setText("Nothing");
+                text.setText("Not");
             }
         });
     }
@@ -132,311 +154,96 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     // Toast.makeText(MainActivity.this, "播放即时音效", Toast.LENGTH_SHORT).show();
     //-------------------------------------------------------
     @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.de:
-                dengyu.setEnabled(true);
-               text2.setText(text.getText()+"的");
-               text.setText("");
-               de.setEnabled(false);
-                playSound("1", 0);//播放音效
-                break;
-            case R.id.sc:
-                text.setText("");
-                text2.setText("");
-                playSound("1", 0);//播放音效
-                break;
-            case R.id.baba:
-                text.setText("爸爸");
-                de.setEnabled(true);
-                playSound("1", 0);//播放音效
-                break;
-            case R.id.mama:
-                text.setText("妈妈");
-                de.setEnabled(true);
-                playSound("1", 0);//播放音效
-                break;
+    public void onClick(View v)  {
 
-            case R.id.xiong:
-                text.setText("哥哥");
-                de.setEnabled(true);
-                playSound("1", 0);//播放音效
-                break;
-            case R.id.di:
-                text.setText("弟弟");
-                de.setEnabled(true);
-                playSound("1", 0);//播放音效
-                break;
-            case R.id.jie:
-                text.setText("姐姐");
-                de.setEnabled(true);
-                playSound("1", 0);//播放音效
-                break;
-            case R.id.mei:
-                text.setText("妹妹");
-                de.setEnabled(true);
-                playSound("1", 0);//播放音效
-                break;
-            case R.id.fu:
-                text.setText("丈夫");
-                de.setEnabled(true);
-                playSound("1", 0);//播放音效
-                break;
-            case R.id.qi:
-                text.setText("妻子");
-                de.setEnabled(true);
-                playSound("1", 0);//播放音效
-                break;
-            case R.id.zi:
-                text.setText("儿子");
-                de.setEnabled(true);
-                playSound("1", 0);//播放音效
-                break;
-            case R.id.nv:
-                text.setText("女儿");
-                de.setEnabled(true);
-                playSound("1", 0);//播放音效
-                break;
-            case R.id.dengyu:
-                //整合输入的信息
-                text2.setText(text2.getText()+""+text.getText());
-                //判断错误的输入
-                if (text2.getText().equals("丈夫的丈夫")||text2.getText().equals("妻子的妻子")||text2.getText().equals("哥哥的丈夫")||text2.getText().equals("弟弟的丈夫")||text2.getText().equals("姐姐的妻子")||text2.getText().equals("妹妹的妻子")){
+        //异常类处理
+        try {
+            switch (v.getId()){
+                case R.id.de:
+                    fu.setEnabled(true);
+                    qi.setEnabled(true);
+                    dengyu.setEnabled(true);
+                    text2.setText(text.getText().toString()+"的");
+                    text.setText("");
+                    de.setEnabled(false);
+                    playSound("1", 0);//播放音效
+                    break;
+                case R.id.sc:
+                    text.setText("");
+                    text2.setText("");
+                    playSound("1", 0);//播放音效
+                    break;
+                case R.id.baba:
+                    text.setText("爸爸");
+                    de.setEnabled(true);
+                    playSound("1", 0);//播放音效
+                    break;
+                case R.id.mama:
+                    text.setText("妈妈");
+                    de.setEnabled(true);
+                    playSound("1", 0);//播放音效
+                    break;
 
-                    text.setText("真是奇妙的一家人");
-                }else {
+                case R.id.xiong:
+                    text.setText("哥哥");
+                    de.setEnabled(true);
+                    playSound("1", 0);//播放音效
+                    break;
+                case R.id.di:
+                    text.setText("弟弟");
+                    de.setEnabled(true);
+                    playSound("1", 0);//播放音效
+                    break;
+                case R.id.jie:
+                    text.setText("姐姐");
+                    de.setEnabled(true);
+                    playSound("1", 0);//播放音效
+                    break;
+                case R.id.mei:
+                    text.setText("妹妹");
+                    de.setEnabled(true);
+                    playSound("1", 0);//播放音效
+                    break;
+                case R.id.fu:
+                    text.setText("丈夫");
+                    de.setEnabled(true);
+                    playSound("1", 0);//播放音效
+                    break;
+                case R.id.qi:
+                    text.setText("妻子");
+                    de.setEnabled(true);
+                    playSound("1", 0);//播放音效
+                    break;
+                case R.id.zi:
+                    text.setText("儿子");
+                    de.setEnabled(true);
+                    playSound("1", 0);//播放音效
+                    break;
+                case R.id.nv:
+                    text.setText("女儿");
+                    de.setEnabled(true);
+                    playSound("1", 0);//播放音效
+                    break;
+                case R.id.dengyu:
+                    //整合输入的信息
+                    text2.setText(text2.getText()+""+text.getText());
+                    data = cx.get(""+text2.getText().toString());
+                    //判断错误的输入
+                    if (text2.getText().equals("丈夫的丈夫")||text2.getText().equals("妻子的妻子")||text2.getText().equals("哥哥的丈夫")||text2.getText().equals("弟弟的丈夫")||text2.getText().equals("姐姐的妻子")||text2.getText().equals("妹妹的妻子")){
 
-                    switch (text2.getText()+""){
+                        text.setText("真是奇妙的一家人");
+                    }else {
 
-                        case "爸爸的妈妈":
-                            playSound("奶奶", 0);//播放音效
-                            text.setText("奶奶");
-                            break;
-                        case "爸爸的爸爸":
-                            playSound("爷爷", 0);//播放音效
-                            text.setText("爷爷");
-                            break;
-                        case "爸爸的哥哥":
-                            playSound("伯伯", 0);
-                            text.setText("伯伯");
-                            break;
-                        case "爸爸的弟弟":
-                            playSound("叔叔", 0);//播放音效
-                            text.setText("叔叔");
-                            break;
-                        case "爸爸的姐姐":
-                            playSound("姑姑", 0);//播放音效
-                            text.setText("姑姑");
-                            break;
-                        case "爸爸的妹妹":
-                            playSound("姑姑", 0);//播放音效
-                            text.setText("姑姑");
-                            break;
-                        case "爸爸的妻子":
-                            playSound("妈妈", 0);//播放音效
-                            text.setText("妈妈");
-                            break;
-                        case "爸爸的儿子":
-                            playSound("哥哥", 0);//播放音效
-                            text.setText("哥哥/弟弟");
-                            break;
-                        case "爸爸的女儿":
-                            playSound("姐姐", 0);//播放音效
-                            text.setText("姐姐/妹妹");
-                            break;
-                        case "妈妈的妈妈":
-                            playSound("外婆", 0);//播放音效
-                            text.setText("外婆");
-                            break;
-                        case "妈妈的儿子":
-                            playSound("哥哥", 0);
-                            text.setText("要么是哥哥要么是弟弟");
-                            break;
-                        case "妈妈的爸爸":
-                            playSound("外公", 0);
-                            text.setText("外公");
-                            break;
-                        case "妈妈的哥哥":
-                            playSound("舅舅", 0);
-                            text.setText("舅舅");
-                            break;
-                        case "妈妈的弟弟":
-                            playSound("舅舅", 0);
-                            text.setText("舅舅");
-                            break;
-                        case "妈妈的姐姐":
-                            playSound("大姨", 0);
-                            text.setText("大姨");
-                            break;
-                        case "妈妈的妹妹":
-                            playSound("小姨", 0);
-                            text.setText("小姨");
-                            break;
-                        case "丈夫的爸爸":
-                            playSound("爸爸", 0);
-                            text.setText("爸爸");
-                            break;
-                        case "丈夫的妈妈":
-                            playSound("妈妈", 0);
-                            text.setText("妈妈");
-                            break;
-                        case "丈夫的哥哥":
-                            playSound("哥哥", 0);
-                            text.setText("哥哥");
-                            break;
-                        case "丈夫的弟弟":
-                            playSound("弟弟", 0);
-                            text.setText("弟弟");
-                            break;
-                        case "丈夫的姐姐":
-                            playSound("姐姐", 0);
-                            text.setText("姐姐");
-                            break;
-                        case "丈夫的妹妹":
-                            playSound("妹妹", 0);
-                            text.setText("妹妹");
-                            break;
-                        case "丈夫的儿子":
-                            playSound("儿子", 0);
-                            text.setText("儿子");
-                            break;
-                        case "丈夫的女儿":
-                            playSound("女儿", 0);
-                            text.setText("女儿");
-                            break;
-                        case "妻子的爸爸":
-                            playSound("岳父", 0);
-                            text.setText("岳父");
-                            break;
-                        case "妻子的妈妈":
-                            playSound("岳母", 0);
-                            text.setText("岳母");
-                            break;
-                        case "妻子的弟弟":
-                            playSound("小舅子", 0);
-                            text.setText("小舅子");
-                            break;
-                        case "妻子的哥哥":
-                            playSound("大舅子", 0);
-                            text.setText("大舅子");
-                            break;
-                        case "妻子的姐姐":
-                            playSound("姐姐", 0);
-                            text.setText("姐姐");
-                            break;
-                        case "妻子的妹妹":
-                            playSound("妹妹", 0);
-                            text.setText("妹妹");
-                            break;
-                        case "妻子的儿子":
-                            text.setText("儿子");
-                            break;
-                        case "妻子的女儿":
-                            text.setText("女儿");
-                            break;
-                        case "哥哥的爸爸":
-                            playSound("爸爸", 0);
-                            text.setText("爸爸");
-                            break;
-                        case "哥哥的妈妈":
-                            playSound("妈妈", 0);
-                            text.setText("妈妈");
-                            break;
-                        case "哥哥的妻子":
-                            text.setText("嫂子");
-                            playSound("嫂子", 0);
-                            break;
-                        case "哥哥的姐姐":
-                            playSound("姐姐", 0);
-                            text.setText("姐姐");
-                            break;
-                        case "哥哥的妹妹":
-                            playSound("姐姐", 0);
-                            text.setText("姐姐/妹妹");
-                            break;
-                        case "哥哥的弟弟":
-                            playSound("哥哥", 0);
-                            text.setText("哥哥/弟弟");
-                            break;
-                        case "弟弟的爸爸":
-                            playSound("爸爸", 0);
-                            text.setText("爸爸");
-                            break;
-                        case "弟弟的妈妈":
-                            playSound("妈妈", 0);
-                            text.setText("妈妈");
-                            break;
-                        case "弟弟的妻子":
-                            playSound("弟媳", 0);
-                            text.setText("弟媳");
-                            break;
-                        case "弟弟的妹妹":
-                            playSound("妹妹", 0);
-                            text.setText("妹妹");
-                            break;
-                        case "弟弟的弟弟":
-                            playSound("弟弟", 0);
-                            text.setText("弟弟");
-                            break;
-                        case "姐姐的爸爸":
-                            playSound("爸爸", 0);
-                            text.setText("爸爸");
-                            break;
-                        case "姐姐的妈妈":
-                            playSound("妈妈", 0);
-                            text.setText("妈妈");
-                            break;
-                        case "姐姐的丈夫":
-                            playSound("姐夫", 0);
-                            text.setText("姐夫");
-                            break;
-                        case "姐姐的姐姐":
-                            playSound("姐姐", 0);
-                            text.setText("姐姐");
-                            break;
-                        case "姐姐的妹妹":
-                            playSound("姐姐", 0);
-                            text.setText("姐姐/妹妹");
-                            break;
-                        case "姐姐的弟弟":
-                            playSound("哥哥", 0);
-                            text.setText("哥哥/弟弟");
-                            break;
-                        case "妹妹的爸爸":
-                            playSound("爸爸", 0);
-                            text.setText("爸爸");
-                            break;
-                        case "妹妹的妈妈":
-                            playSound("妈妈", 0);
-                            text.setText("妈妈");
-                            break;
-                        case "妹妹的丈夫":
-                            playSound("妹夫", 0);
-                            text.setText("妹夫");
-                            break;
-                        case "妹妹的哥哥":
-                            playSound("哥哥", 0);
-                            text.setText("哥哥/弟弟");
-                            break;
-                        case "妹妹的姐姐":
-                            playSound("姐姐", 0);
-                            text.setText("姐姐/妹妹");
-                            break;
-                        case "妹妹的妹妹":
-                            text.setText("妹妹");
-                            break;
-                        case "妹妹的弟弟":
-                            playSound("弟弟", 0);
-                            text.setText("弟弟");
-                            break;
-
-                            default:text.setText("抱歉，此结果还未添加！");
-
-                            break;
-
-                                 }
-                    dengyu.setEnabled(false);
+                        text.setText(data);
+                        playSound(data,0);
+                        dengyu.setEnabled(false);
                     }
-                }
+                    break;
+            }
+
+        }
+        catch (Exception e){
+        text2.setText("未记录");
+        }
     }
 }
